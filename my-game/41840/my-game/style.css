@@ -1,0 +1,414 @@
+:root {
+  color-scheme: dark;
+  font-family: "Malgun Gothic", "Apple SD Gothic Neo", sans-serif;
+  background: #101614;
+  color: #edf3ee;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  min-width: 320px;
+  min-height: 100vh;
+  margin: 0;
+  background: radial-gradient(ellipse at 50% 0%, #1c3029 0%, #101614 58%);
+}
+
+.intro {
+  width: min(100% - 48px, 760px);
+  margin: 0 auto;
+  padding: clamp(88px, 17vh, 160px) 0 96px;
+}
+
+.intro__header {
+  padding-bottom: 56px;
+  border-bottom: 1px solid #35443d;
+}
+
+.intro__eyebrow {
+  margin: 0 0 12px;
+  color: #a9c8b6;
+  font-size: 16px;
+}
+
+h1 {
+  margin: 0;
+  color: #63a8ff;
+  font-size: 72px;
+  line-height: 1.15;
+  overflow-wrap: anywhere;
+  cursor: pointer;
+  transition: color 160ms ease;
+}
+
+h1.is-glitching {
+  color: #ffffff;
+  animation: text-noise 80ms steps(2, end) infinite;
+}
+
+.intro__summary {
+  margin: 20px 0 0;
+  color: #c2cec6;
+  font-size: 20px;
+  line-height: 1.7;
+  cursor: pointer;
+}
+
+.intro__summary.is-glitching {
+  animation: text-noise 80ms steps(2, end) infinite;
+}
+
+@keyframes text-noise {
+  0% {
+    text-shadow: 2px 0 #ff5470, -2px 0 #54d9ff;
+  }
+
+  50% {
+    text-shadow: -2px 0 #ff5470, 2px 0 #54d9ff;
+  }
+
+  100% {
+    text-shadow: 1px 1px #ff5470, -1px -1px #54d9ff;
+  }
+}
+
+.games {
+  padding-top: 40px;
+}
+
+.games h2 {
+  margin: 0 0 20px;
+  font-size: 24px;
+}
+
+.idea-list {
+  display: grid;
+  gap: 16px;
+  margin: 0;
+  padding-left: 28px;
+}
+
+.idea-list > li::marker {
+  color: #83bd9a;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.game-idea {
+  padding: 22px 24px;
+  border-left: 3px solid #83bd9a;
+  background: #19221e;
+  cursor: pointer;
+}
+
+.game-idea:focus-visible {
+  outline: 2px solid #83bd9a;
+  outline-offset: 3px;
+}
+
+.game-idea h3 {
+  margin: 0;
+  color: #edf3ee;
+  font-size: 21px;
+  line-height: 1.4;
+  overflow-wrap: anywhere;
+}
+
+.game-idea.is-glitching h3 {
+  animation: text-noise 80ms steps(2, end) infinite;
+}
+
+.game-idea__details {
+  display: none;
+  gap: 14px;
+  margin: 0;
+}
+
+.game-idea.is-active .game-idea__details {
+  display: grid;
+  margin-top: 20px;
+}
+
+.game-idea__details div {
+  display: grid;
+  grid-template-columns: 150px minmax(0, 1fr);
+  gap: 16px;
+  padding-top: 14px;
+  border-top: 1px solid #35443d;
+}
+
+.game-idea__details .game-idea__step[hidden] {
+  display: none;
+}
+
+.game-idea__details dt {
+  color: #a9c8b6;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.6;
+}
+
+.game-idea__details dd {
+  margin: 0;
+  color: #c2cec6;
+  font-size: 16px;
+  line-height: 1.7;
+  overflow-wrap: anywhere;
+}
+
+.tower-defense {
+  margin-top: 64px;
+  padding-top: 32px;
+  border-top: 1px solid #35443d;
+}
+
+.tower-defense__header {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+}
+
+.tower-defense__eyebrow {
+  margin: 0;
+  color: #a9c8b6;
+  font-size: 14px;
+}
+
+.tower-defense__header h2 {
+  margin: 0;
+  color: #edf3ee;
+  font-size: 28px;
+}
+
+.tower-defense__stats {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin: 24px 0 18px;
+  padding: 0 0 16px;
+  border-bottom: 1px solid #35443d;
+}
+
+.tower-defense__stats > div {
+  display: grid;
+  gap: 6px;
+}
+
+.tower-defense__stats dt {
+  color: #a9b7ae;
+  font-size: 13px;
+}
+
+.tower-defense__stats dd {
+  margin: 0;
+  color: #edf3ee;
+  font-size: 19px;
+  font-variant-numeric: tabular-nums;
+}
+
+.tower-defense__board-wrap {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid #425347;
+  background: #14231c;
+}
+
+#tower-board {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 2 / 1;
+  cursor: crosshair;
+  touch-action: manipulation;
+}
+
+.tower-defense__overlay {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  align-content: center;
+  justify-items: center;
+  gap: 16px;
+  padding: 24px;
+  background: rgb(10 17 13 / 86%);
+  text-align: center;
+}
+
+.tower-defense__overlay[hidden] {
+  display: none;
+}
+
+.tower-defense__overlay p {
+  max-width: 28em;
+  margin: 0;
+  color: #edf3ee;
+  font-size: 22px;
+  line-height: 1.6;
+}
+
+.tower-defense__controls {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 18px;
+}
+
+.tower-defense__tower-picker,
+.tower-defense__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.tower-defense__tower-button,
+.tower-defense__button {
+  min-height: 48px;
+  border: 1px solid #4a5b50;
+  border-radius: 3px;
+  background: #19241e;
+  color: #edf3ee;
+  font: inherit;
+  cursor: pointer;
+}
+
+.tower-defense__tower-button {
+  display: grid;
+  justify-items: start;
+  gap: 4px;
+  min-width: 150px;
+  padding: 8px 12px;
+  text-align: left;
+}
+
+.tower-defense__tower-button small {
+  color: #b5c4ba;
+  font-size: 12px;
+}
+
+.tower-defense__tower-button:hover,
+.tower-defense__button:hover:not(:disabled) {
+  border-color: #a9c8b6;
+}
+
+.tower-defense__tower-button[aria-pressed="true"] {
+  border-color: #f1c76b;
+  background: #293024;
+}
+
+.tower-defense__button {
+  padding: 10px 18px;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.tower-defense__button--primary {
+  border-color: #a9c8b6;
+  background: #a9c8b6;
+  color: #14211a;
+}
+
+.tower-defense__button:disabled,
+.tower-defense__tower-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+.tower-defense__button:focus-visible,
+.tower-defense__tower-button:focus-visible {
+  outline: 2px solid #f1c76b;
+  outline-offset: 3px;
+}
+
+.tower-defense__status {
+  min-height: 1.6em;
+  margin: 18px 0 0;
+  color: #e6eee8;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.tower-defense__help {
+  margin: 6px 0 0;
+  color: #a9b7ae;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.page-footer {
+  margin-top: 56px;
+  padding-top: 18px;
+  border-top: 1px solid #35443d;
+  color: #a9b7ae;
+  font-size: 15px;
+}
+
+.page-footer p {
+  margin: 0;
+}
+
+@media (max-width: 480px) {
+  .intro {
+    width: min(100% - 40px, 760px);
+    padding-top: 88px;
+  }
+
+  .intro__header {
+    padding-bottom: 40px;
+  }
+
+  h1 {
+    font-size: 48px;
+  }
+
+  .intro__summary {
+    font-size: 18px;
+  }
+
+  .idea-list {
+    padding-left: 24px;
+  }
+
+  .game-idea {
+    padding: 18px 16px;
+  }
+
+  .game-idea__details div {
+    grid-template-columns: 1fr;
+    gap: 4px;
+  }
+
+  .tower-defense__header {
+    align-items: start;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .tower-defense__stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    row-gap: 16px;
+  }
+
+  .tower-defense__controls {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .tower-defense__tower-picker {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .tower-defense__tower-button {
+    min-width: 0;
+    width: 100%;
+  }
+
+  .tower-defense__actions,
+  .tower-defense__actions .tower-defense__button {
+    width: 100%;
+  }
+}
